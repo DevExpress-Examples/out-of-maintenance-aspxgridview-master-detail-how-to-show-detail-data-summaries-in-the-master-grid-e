@@ -4,7 +4,7 @@ Imports System.Collections.Generic
 Imports System.Web
 Imports System.Web.UI
 Imports System.Web.UI.WebControls
-Imports DevExpress.Web.ASPxGridView
+Imports DevExpress.Web
 
 Partial Public Class _Default
 	Inherits System.Web.UI.Page
@@ -14,7 +14,7 @@ Partial Public Class _Default
 
 		dataSource.SelectParameters("CategoryID").DefaultValue = container.KeyValue.ToString()
 	End Sub
-	Protected Sub gvCategories_CustomUnboundColumnData(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridView.ASPxGridViewColumnDataEventArgs)
+	Protected Sub gvCategories_CustomUnboundColumnData(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridViewColumnDataEventArgs)
 		Dim categoryID As Object = e.GetListSourceFieldValue("CategoryID")
 		If e.Column.FieldName = "UnitsInStock" Then
 			e.Value = DataHelper.ExecuteCommand(String.Format("SELECT SUM([UnitsInStock]) FROM  [Products] WHERE ([CategoryID] = {0})", categoryID))
